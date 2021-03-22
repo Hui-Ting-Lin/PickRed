@@ -20,7 +20,7 @@ struct PlayerCardsView: View {
     var body: some View {
         ZStack{
             ForEach(0..<cards.count, id: \.self){ (index) in
-                if(direction==1){
+                if(direction==1 && (playerNum==0 || playerNum==5) ){
                     Button {
                         if(gameObject.turn==0 && playerNum==0){
                             selectCard = gameObject.players[0].cards.remove(at: index)
@@ -34,23 +34,31 @@ struct PlayerCardsView: View {
                                         computerTurns()
                                     }
                                 }
-                                
                             }
+                            
                         }
                     } label: {
                         Image("\(cards[index].suit)\(cards[index].value)")
                             .resizable()
+                            .transition(.topTransition)
                     }
                     .frame(width: 50, height: 75)
                     .offset(x: CGFloat(index * 20) - 50)
                     
-                }//平的
+                }//player
+                else if (direction==1){
+                    Image("cardback")
+                        .resizable()
+                        .frame(width: 50, height: 75)
+                        .offset(x: CGFloat(index * 20) - 50)
+                }
                 else{
-                    Image("\(cards[index].suit)\(cards[index].value)")
+                    Image("cardback")
                         .resizable()
                         .frame(width: 50, height: 75)
                         .rotationEffect(.degrees(90))
                         .offset(y: CGFloat(index * 20) - 50)
+                        .ignoresSafeArea()
                 }//直的
                 
             }
@@ -139,7 +147,7 @@ struct PlayerCardsView: View {
     
     func computerTurns(){
         
-        if(gameObject.turn != 0 && gameObject.topCardIndex != 51){
+        if(gameObject.turn != 0 && gameObject.topCardIndex < 51){
             
             let selectCardIndex = Int.random(in: 0..<gameObject.players[gameObject.turn].cards.count)
             
@@ -150,6 +158,7 @@ struct PlayerCardsView: View {
         }
         
         if(gameObject.topCardIndex==51){
+            gameObject.topCardIndex=52
             endGame()
             isPresented = true
         }
@@ -176,8 +185,14 @@ struct PlayerCardsView: View {
                 gameObject.players[index].coin = gameObject.players[index].coin+gameObject.players[index].result >= 0 ? gameObject.players[index].coin+gameObject.players[index].result : 0
                 gameObject.players[maxIndex].result-=gameObject.players[index].result
             }
-        
+            
             if(gameObject.players[index].coin == 0){
+                if(gameObject.players[0].coin == 0){
+                    gameObject.loserIsPlayer = true
+                }
+                else{
+                    gameObject.loserIsPlayer = false
+                }
                 gameObject.gameOver = true
             }
             

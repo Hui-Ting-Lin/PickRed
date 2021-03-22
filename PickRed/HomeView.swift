@@ -18,6 +18,8 @@ class GameObject: ObservableObject{
     @Published var isHome = true
     @Published var gameOver = false
     @Published var dealing = false
+    @Published var showCard: [Bool] = [true]
+    @Published var loserIsPlayer: Bool = false
 }
 
 
@@ -26,21 +28,45 @@ struct HomeView: View {
     
     var body: some View {
         if(gameObject.isHome){
-            Text("start")
-                .onAppear{
-                    makeCards()
-                    makePlayers()
-                    gameObject.cardDeck.shuffle()
-                    dealCards()
+            VStack{
+                Text("撿紅點")
+                    .font(.custom("jf-openhuninn-1.1", size: 50))
+                    .padding()
+                HStack{
+                    Button {
+                        gameObject.isHome = false
+                        gameObject.dealing = true
+                    } label: {
+                        Text("開始遊戲")
+                            .font(.custom("jf-openhuninn-1.1", size: 25))
+                    }
+                    .onAppear{
+                        makeCards()
+                        makePlayers()
+                        gameObject.cardDeck.shuffle()
+                        dealCards()
+                        for _ in 0..<52{
+                            gameObject.showCard.append(true)
+                        }
+                    }
+                    
+                    Link("規則說明", destination: URL(string: "https://dylanwan.pixnet.net/blog/post/18071031")!)
+                        .font(.custom("jf-openhuninn-1.1", size: 25))
                 }
-                .onTapGesture {
-                    gameObject.isHome = false
-                    gameObject.dealing = true
-                }
+            }
+            .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height, alignment: .center)
+            .background(
+                Image("mainImage")
+                    .resizable()
+                    .scaledToFill()
+                    .opacity(0.8)
+            )
+            .ignoresSafeArea(.all)
         }
         else{
             if(gameObject.dealing){
-                gameObject.dealing = false
+                DealAnimationView()
+                    .environmentObject(gameObject)
             }
             else{
                 GameView()
