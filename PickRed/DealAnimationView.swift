@@ -25,13 +25,13 @@ struct DealAnimationView: View {
                         ForEach(0..<52, id: \.self){ index in
                             if(index%4==0){
                                 if(gameObject.showCard[index]){
-                                    Image("cardback")
+                                    Image(gameObject.cardBack)
                                         .resizable()
                                         .frame(width: 50, height: 75)
                                         .transition(.bottomTransition)
                                 }
                                 else{
-                                    Image("cardback")
+                                    Image(gameObject.cardBack)
                                         .resizable()
                                         .frame(width: 50, height: 75)
                                         .hidden()
@@ -39,13 +39,13 @@ struct DealAnimationView: View {
                             }
                             else if(index%4==1){
                                 if(gameObject.showCard[index]){
-                                    Image("cardback")
+                                    Image(gameObject.cardBack)
                                         .resizable()
                                         .frame(width: 50, height: 75)
                                         .transition(.leftTransition)
                                 }
                                 else{
-                                    Image("cardback")
+                                    Image(gameObject.cardBack)
                                         .resizable()
                                         .frame(width: 50, height: 75)
                                         .hidden()
@@ -53,13 +53,13 @@ struct DealAnimationView: View {
                             }
                             else if(index%4==2){
                                 if(gameObject.showCard[index]){
-                                    Image("cardback")
+                                    Image(gameObject.cardBack)
                                         .resizable()
                                         .frame(width: 50, height: 75)
                                         .transition(.topTransition)
                                 }
                                 else{
-                                    Image("cardback")
+                                    Image(gameObject.cardBack)
                                         .resizable()
                                         .frame(width: 50, height: 75)
                                         .hidden()
@@ -67,13 +67,13 @@ struct DealAnimationView: View {
                             }
                             else if(index%4==3){
                                 if(gameObject.showCard[index]){
-                                    Image("cardback")
+                                    Image(gameObject.cardBack)
                                         .resizable()
                                         .frame(width: 50, height: 75)
                                         .transition(.rightTransition)
                                 }
                                 else{
-                                    Image("cardback")
+                                    Image(gameObject.cardBack)
                                         .resizable()
                                         .frame(width: 50, height: 75)
                                         .hidden()

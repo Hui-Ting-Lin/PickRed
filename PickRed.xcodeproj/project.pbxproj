@@ -16,6 +16,8 @@
 		4B85ACAA25F8BB8700F415D5 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B85ACA925F8BB8700F415D5 /* Card.swift */; };
 		AB0C8F292608F22A00B97C96 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0C8F282608F22A00B97C96 /* GameOverView.swift */; };
 		AB3D7DA22603A8B900667227 /* DealAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3D7DA12603A8B900667227 /* DealAnimationView.swift */; };
+		AB422399260A4DDA001FB946 /* ChooseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB422398260A4DDA001FB946 /* ChooseCardView.swift */; };
+		AB42239D260A530A001FB946 /* cuteMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB42239C260A5309001FB946 /* cuteMusic.mp3 */; };
 		AB46984C25FE4B49003E4550 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB46984B25FE4B49003E4550 /* Player.swift */; };
 		AB46985525FE50DE003E4550 /* PlayerCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB46985425FE50DE003E4550 /* PlayerCardsView.swift */; };
 		AB47C9BC2607268A0018973B /* ResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47C9BB2607268A0018973B /* ResultRow.swift */; };
@@ -35,6 +37,8 @@
 		4B85ACA925F8BB8700F415D5 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		AB0C8F282608F22A00B97C96 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		AB3D7DA12603A8B900667227 /* DealAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealAnimationView.swift; sourceTree = "<group>"; };
+		AB422398260A4DDA001FB946 /* ChooseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCardView.swift; sourceTree = "<group>"; };
+		AB42239C260A5309001FB946 /* cuteMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cuteMusic.mp3; sourceTree = "<group>"; };
 		AB46984B25FE4B49003E4550 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		AB46985425FE50DE003E4550 /* PlayerCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCardsView.swift; sourceTree = "<group>"; };
 		AB47C9BB2607268A0018973B /* ResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRow.swift; sourceTree = "<group>"; };
@@ -72,13 +76,14 @@
 		4B85AC9025F8BB3900F415D5 /* PickRed */ = {
 			isa = PBXGroup;
 			children = (
+				AB42239C260A5309001FB946 /* cuteMusic.mp3 */,
 				AB47C9C42607370C0018973B /* jf-openhuninn-1.1.ttf */,
 				AB47C9BF260733EF0018973B /* crayon_1-1.ttf */,
 				4B85AC9125F8BB3900F415D5 /* PickRedApp.swift */,
 				4B85ACA225F8BB5900F415D5 /* HomeView.swift */,
 				4B85ACA525F8BB6E00F415D5 /* GameView.swift */,
-				AB46985425FE50DE003E4550 /* PlayerCardsView.swift */,
 				4B85ACA925F8BB8700F415D5 /* Card.swift */,
+				AB46985425FE50DE003E4550 /* PlayerCardsView.swift */,
 				AB46984B25FE4B49003E4550 /* Player.swift */,
 				4B4AD4E02601E18D001D7B41 /* FullScreenView.swift */,
 				AB3D7DA12603A8B900667227 /* DealAnimationView.swift */,
@@ -87,6 +92,7 @@
 				4B85AC9525F8BB3900F415D5 /* Assets.xcassets */,
 				4B85AC9725F8BB3900F415D5 /* Preview Content */,
 				AB0C8F282608F22A00B97C96 /* GameOverView.swift */,
+				AB422398260A4DDA001FB946 /* ChooseCardView.swift */,
 			);
 			path = PickRed;
 			sourceTree = "<group>";
@@ -157,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB47C9C0260733EF0018973B /* crayon_1-1.ttf in Resources */,
+				AB42239D260A530A001FB946 /* cuteMusic.mp3 in Resources */,
 				AB47C9C52607370C0018973B /* jf-openhuninn-1.1.ttf in Resources */,
 				4B85AC9925F8BB3900F415D5 /* Preview Assets.xcassets in Resources */,
 				4B85AC9625F8BB3900F415D5 /* Assets.xcassets in Resources */,
@@ -176,6 +183,7 @@
 				AB47C9BC2607268A0018973B /* ResultRow.swift in Sources */,
 				4B85ACA625F8BB6E00F415D5 /* GameView.swift in Sources */,
 				AB3D7DA22603A8B900667227 /* DealAnimationView.swift in Sources */,
+				AB422399260A4DDA001FB946 /* ChooseCardView.swift in Sources */,
 				4B85ACA325F8BB5900F415D5 /* HomeView.swift in Sources */,
 				4B4AD4E12601E18D001D7B41 /* FullScreenView.swift in Sources */,
 				AB46984C25FE4B49003E4550 /* Player.swift in Sources */,

@@ -131,7 +131,7 @@ struct FullScreenView: View {
                 
             }
         }
-        
+        gameObject.tableCards = []
         for _ in 0...3{
             gameObject.topCardIndex+=1
             gameObject.tableCards.append(gameObject.cardDeck[gameObject.topCardIndex])

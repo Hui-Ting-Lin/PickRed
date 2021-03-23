@@ -18,7 +18,7 @@ struct GameView: View {
             
             HStack{
                 PlayerCardsView(cards: gameObject.players[1].cards, playerNum: 1, direction: 0)
-                    .offset(x: 20)
+                    .offset(x: 50)
                 Spacer()
                 
                 VStack{

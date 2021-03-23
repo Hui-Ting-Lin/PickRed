@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-//animals = animals.filter(){$0 != "chimps"}
 
 struct PlayerCardsView: View {
     @EnvironmentObject var gameObject: GameObject
@@ -47,13 +46,13 @@ struct PlayerCardsView: View {
                     
                 }//player
                 else if (direction==1){
-                    Image("cardback")
+                    Image(gameObject.cardBack)
                         .resizable()
                         .frame(width: 50, height: 75)
                         .offset(x: CGFloat(index * 20) - 50)
                 }
                 else{
-                    Image("cardback")
+                    Image(gameObject.cardBack)
                         .resizable()
                         .frame(width: 50, height: 75)
                         .rotationEffect(.degrees(90))

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 class GameObject: ObservableObject{
     @Published var cardDeck: [Card] = []
@@ -20,59 +21,85 @@ class GameObject: ObservableObject{
     @Published var dealing = false
     @Published var showCard: [Bool] = [true]
     @Published var loserIsPlayer: Bool = false
+    @Published var cardBack = "redBack"
+    @Published var isChoosingCard = false
 }
 
 
 struct HomeView: View {
     @StateObject var gameObject = GameObject()
-    
+    @State var looper: AVPlayerLooper?
     var body: some View {
-        if(gameObject.isHome){
-            VStack{
-                Text("撿紅點")
-                    .font(.custom("jf-openhuninn-1.1", size: 50))
-                    .padding()
-                HStack{
-                    Button {
-                        gameObject.isHome = false
-                        gameObject.dealing = true
-                    } label: {
-                        Text("開始遊戲")
-                            .font(.custom("jf-openhuninn-1.1", size: 25))
-                    }
-                    .onAppear{
-                        makeCards()
-                        makePlayers()
-                        gameObject.cardDeck.shuffle()
-                        dealCards()
-                        for _ in 0..<52{
-                            gameObject.showCard.append(true)
+        ZStack{
+            if(gameObject.isHome){
+                VStack{
+                    Text("撿紅點")
+                        .foregroundColor(Color.black)
+                        .font(.custom("jf-openhuninn-1.1", size: 50))
+                        .padding()
+                    HStack{
+                        Button {
+                            gameObject.isHome = false
+                            gameObject.dealing = true
+                        } label: {
+                            Text("開始遊戲")
+                                .font(.custom("jf-openhuninn-1.1", size: 25))
                         }
+                        .onAppear{
+                            makeCards()
+                            makePlayers()
+                            gameObject.cardDeck.shuffle()
+                            dealCards()
+                            for _ in 0..<52{
+                                gameObject.showCard.append(true)
+                            }
+                        }
+                        .padding()
+                        
+                        Link("規則說明", destination: URL(string: "https://dylanwan.pixnet.net/blog/post/18071031")!)
+                            .font(.custom("jf-openhuninn-1.1", size: 25))
+                            .padding()
+                        
+                        Button {
+                            gameObject.isHome = false
+                            gameObject.isChoosingCard = true
+                        } label: {
+                            Text("選擇牌背")
+                                .font(.custom("jf-openhuninn-1.1", size: 25))
+                        }
+                        .padding()
                     }
-                    
-                    Link("規則說明", destination: URL(string: "https://dylanwan.pixnet.net/blog/post/18071031")!)
-                        .font(.custom("jf-openhuninn-1.1", size: 25))
                 }
-            }
-            .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height, alignment: .center)
-            .background(
-                Image("mainImage")
-                    .resizable()
-                    .scaledToFill()
-                    .opacity(0.8)
-            )
-            .ignoresSafeArea(.all)
-        }
-        else{
-            if(gameObject.dealing){
-                DealAnimationView()
-                    .environmentObject(gameObject)
+                .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height, alignment: .center)
+                .background(
+                    Image("mainImage")
+                        .resizable()
+                        .scaledToFill()
+                        .opacity(0.8)
+                )
+                .ignoresSafeArea(.all)
             }
             else{
-                GameView()
-                    .environmentObject(gameObject)
+                if(gameObject.dealing){
+                    DealAnimationView()
+                        .environmentObject(gameObject)
+                }
+                else if(gameObject.isChoosingCard){
+                    ChooseCardView().environmentObject(gameObject)
+                }
+                else{
+                    GameView()
+                        .environmentObject(gameObject)
+                }
+                
             }
-            
+        }
+        .onAppear{
+            let player = AVQueuePlayer()
+            let fileUrl = Bundle.main.url(forResource: "cuteMusic", withExtension: "mp3")!
+            let playerItem = AVPlayerItem(url: fileUrl)
+            self.looper = AVPlayerLooper(player: player, templateItem: playerItem)
+            player.play()
         }
         
     }
@@ -109,7 +136,7 @@ struct HomeView: View {
                 
             }
         }
-        
+        gameObject.tableCards = []
         for _ in 0...3{
             gameObject.topCardIndex+=1
             gameObject.tableCards.append(gameObject.cardDeck[gameObject.topCardIndex])
